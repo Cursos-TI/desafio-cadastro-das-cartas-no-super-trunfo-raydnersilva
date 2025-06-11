@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <locale.h>
 
 // Desafio Super Trunfo - Países
 // Tema 1 - Cadastro das Cartas
@@ -32,7 +31,7 @@ void entradaDados(int id) {
     fgets(nmCidade, 100, stdin);
     nmCidade[strcspn(nmCidade, "\n")] = 0;
 
-    printf("Número de Habitantes: ");
+    printf("População: ");
     scanf("%d", &populacao);
     getchar();
 
@@ -48,6 +47,9 @@ void entradaDados(int id) {
     scanf("%d", &pontosTuristicos);
     getchar();
 
+    float densidade = (float)populacao / areaKm2; 
+    float pibPerCapita = (pib * 1000000000) / populacao;
+
     printf("\nCarta %d:\n\n", id);
     printf("Estado: %c\n", estado);
     printf("Código: %s\n", cdCarta);
@@ -55,7 +57,9 @@ void entradaDados(int id) {
     printf("População: %d\n", populacao);
     printf("Área: %.2f km²\n", areaKm2);
     printf("PIB: %.2f bilhões de reais\n", pib);
-    printf("Número de Pontos Turísticos: %d\n\n", pontosTuristicos);
+    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos);
+    printf("Densidade Populacional: %.2f hab/km²\n", densidade);
+    printf("PIB per Capita: %.2f reais\n\n", pibPerCapita);
 }
 
 int main() {
@@ -69,8 +73,6 @@ int main() {
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
     // Exiba os valores inseridos para cada atributo da cidade, um por linha.
-
-    setlocale(LC_ALL, "Portuguese_Brazil.1252");
     printf("Bem vindo ao Super Trunfo! \n");
 
     entradaDados(1);
